@@ -1,0 +1,21 @@
+<div class="container mt-5" style="width: 500px">
+  <div class="card" style="padding: 50px;background:black">
+    <h2 style="color:whitesmoke">User Details</h2>
+    <h6 style="color:whitesmoke">Please register your mobile number with us!!!</h6>
+    <form class="mt-3" #formGroup="ngForm" (ngSubmit)="onSubmit(formGroup.value)">
+      <div class="form-group">
+        <label for="userMobile" style="color:whitesmoke">
+          <strong>Mobile Number</strong>
+        </label>
+        <input type="number" min="5" max="10" #userMobile="ngModel" class="form-control" id="userMobile"
+          name="userMobile" ngModel placeholder="Enter Mobile number">
+      </div>
+      <div class="alert alert-danger" *ngIf="userMobile.touched && !userMobile.valid ">
+        <p>Invalid</p>
+      </div>
+      <div>
+        <button type="submit" class="btn btn-primary form-control mt-3">Submit</button>
+      </div>
+    </form>
+  </div>
+</div>

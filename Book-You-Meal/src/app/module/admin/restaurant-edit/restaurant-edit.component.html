@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Admin - Dashboard</title>
+    <link href="../../../../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+    <link href="../../../../assets/css/sb-admin-2.min.css" rel="stylesheet">
+</head>
+<body id="page-top">
+    <div id="wrapper">
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+            <div class="sidebar-brand d-flex align-items-center justify-content-center">
+                <div class="sidebar-brand-icon rotate-n-15">
+                    <i class="fas fa-laugh-wink"></i>
+                </div>
+                <div class="sidebar-brand-text mx-3">Admin Portal</div>
+            </div>
+            <hr class="sidebar-divider my-0">
+            <li class="nav-item active">
+                <a class="nav-link" href="" routerLink="/admin/home">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Dashboard</span></a>
+            </li>
+            <hr class="sidebar-divider">
+            <div class="sidebar-heading">
+                Functions
+            </div>
+            <li class="nav-item active">
+                <a class="nav-link" href="" routerLink="/admin/editRestaurant">
+                    <i class="fas fa-fw fa-list"></i>
+                    <span>View Restaurant</span></a>
+            </li>
+            <hr class="sidebar-divider">
+            <li class="nav-item active">
+                <a class="nav-link" href="" routerLink="/admin/viewCustomer">
+                    <i class="fas fa-fw fa-user"></i>
+                    <span>View Customers</span></a>
+            </li>
+            <hr class="sidebar-divider">
+            <li class="nav-item active">
+                <a data-toggle="modal" class="nav-link" href="" data-target="#myModal">
+                    <i class="fas fa-fw fa-envelope"></i>
+                    <span>Approve Restaurant</span></a>
+            </li>
+        </ul>
+        <div id="content-wrapper" class="d-flex flex-column">
+            <div id="content">
+                <div class="container-fluid">
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h1 class="h3 pt-5 mb-0 text-gray-800">View Restaurant</h1>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-primary shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                Registered Users:</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                {{registeredUserCount}}
+                                            </div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-success shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                Registered Restaurants</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                {{registeredRestaurantCount}}</div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-info shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">no
+                                                Of
+                                                Order Placed
+                                            </div>
+                                            <div class="row no-gutters align-items-center">
+                                                <div class="col-auto">
+                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
+                                                        {{noOfOrderPlaced}}</div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-warning shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                                Restaurant Approval Request</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                {{noOfRequest}}</div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-comments fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="container-fluid table">
+                    <div class="row">
+                        <th class=col-sm-2>
+                            <div>Restaurant Name</div>
+                        </th>
+                        <th class=col-sm-2>
+                            <div>Address</div>
+                        </th>
+                        <th class=col-sm-2>
+                            <div>Contact Number</div>
+                        </th>
+                        <th class=col-sm-2>
+                            <div>Rating</div>
+                        </th>
+                        <th class=col-sm-2>
+                            <div>Discount</div>
+                        </th>
+                        <th class=col-sm-2>
+                            <div>Action</div>
+                        </th>
+                    </div>
+                    <div class="row" *ngFor="let item of restaurantdetailsdata">
+                        <td class=col-sm-2>{{item.restaurantName}}</td>
+                        <td class=col-sm-2>{{item.address}}</td>
+                        <td class=col-sm-2>{{item.userMobile}}</td>
+                        <td class=col-sm-2>{{item.Rating}}</td>
+                        <td class=col-sm-2>{{item.Discounts}}</td>
+                        <td class=col-sm-2>
+                            <button type="button" http-equiv="refresh"
+                                [ngClass]="{'not-allowed':!checkFlag(item.userId)}" class="btn btn-success mr-1"
+                                [disabled]="!checkFlag(item.userId)"
+                                (click)="EnableRestaurent(item.userId)">Enable</button>
+                            <button id="Enable" type="button" http-equiv="refresh"
+                                [ngClass]="{'not-allowed':checkFlag(item.userId)}" [disabled]="checkFlag(item.userId)"
+                                class="btn btn-danger" (click)="DisableRestaurant(item.userId)">Disable</button>
+                        </td>
+                    </div>
+                </div>
+            </div>
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy; Mindtree Meals 2019</span>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+
+
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="../../../../assets/vendor/jquery/jquery.min.js"></script>
+    <script src="../../../../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="../../../../assets/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="../../../../assets/js/sb-admin-2.min.js"></script>
+
+    <!-- Page level plugins -->
+    <script src="../../../../assets/vendor/chart.js/Chart.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="../../../../assets/js/demo/chart-area-demo.js"></script>
+    <script src="../../../../assets/js/s/demo/chart-pie-demo.js"></script>
+
+</body>
+
+</html>
+
+<!-- Modal for approving restaurant -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">Approve Restaurants</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                    <span class="sr-only">Close</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Approve ID</th>
+                            <th scope="col">Restaurant Name</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of restaurantrequestdata">
+                            <th scope="row">{{item.approveId}}</th>
+                            <td scope="row">{{item.restaurantName}}</td>
+                            <button type="button" class="btn btn-success mr-1"
+                                (click)="Approve(item.approveId)">Approve</button>
+                            <button type="button" class="btn btn-danger"
+                                (click)="Reject(item.approveId)">Reject</button>
+
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-info align-self-center mx-auto" data-dismiss="modal">Done</button>
+            </div>
+        </div>
+    </div>
+</div>

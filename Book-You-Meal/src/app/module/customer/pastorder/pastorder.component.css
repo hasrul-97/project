@@ -1,0 +1,15 @@
+.parallax {
+    background-image: url('https://kalingaprojectsdotnet.blob.core.windows.net/book-your-meal-static/orderPageBackground.jpg');
+    height: 100%; 
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  *{padding:0;margin:0;}
+body {
+    background: #eecda3;
+    background: -webkit-linear-gradient(to right, #eecda3, #ef629f);
+    background: linear-gradient(to right, #eecda3, #ef629f);
+    min-height: 100vh;
+  }

@@ -1,0 +1,65 @@
+<body class="parallax">
+    <div class="px-4 px-lg-0">
+        <!-- For demo purpose -->
+        <div class="container text-white py-5 ml-auto mr-auto">
+            <h1 class="display-4" style="font-family: cursive; color: black;"><strong>Past Order Details</strong></h1>
+            <p class="lead mb-0" style="color: rgb(95, 93, 93);">Wanna check your diet plan???</p>
+        </div>
+       <div class="pb-5">
+            <div class="container ml-auto mr-auto">
+                <div class="row">
+                    <div class="col-lg-12 p-5 bg-white rounded shadow-sm mb-5">
+                        <div class="table-responsive">
+                            <table id="mytable" class="table table-bordred">
+
+                                <thead>
+                                    <th>Order ID</th>
+                                    <th>Restaurant Name</th>
+                                    <th>Order Details</th>
+                                    <th>Quantity</th>
+                                    <th>Price</th>
+                                    <th>Order Value</th>
+                                    <th>Action</th>
+                                </thead>
+                                <tbody>
+
+                                    <tr *ngFor="let i of pastOrderList;let num=index">
+                                        <td>{{num+1}}</td>
+                                        <td>{{i.restaurantName}}</td>
+                                        <td>
+                                            <table class="table-borderless">
+                                                <tr *ngFor="let item of i.itemDetails">
+                                                    <td>{{item.itemName}}</td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td>
+                                            <table class="table-borderless">
+                                                <tr *ngFor="let item of i.itemDetails">
+                                                    <td>{{item.quantity}}</td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td>
+                                            <table class="table-borderless">
+                                                <tr *ngFor="let item of i.itemDetails">
+                                                    <td>{{item.itemPrice}}</td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td>{{i.totalCost}}</td>
+                                        <td>
+                                            <button class="btn btn-block btn-primary" (click)="reorder(i)">ReOrder</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+
+                            </table>
+                        </div>
+                        <!-- End -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

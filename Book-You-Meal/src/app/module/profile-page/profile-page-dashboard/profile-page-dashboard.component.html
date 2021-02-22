@@ -1,0 +1,80 @@
+<div class="background">
+    <div class="row">
+        <div class="col-lg-6 mx-auto text-white text-center pt-5">
+            <h1 class="display-4"
+                style="color: rgb(54, 10, 54);font-weight:bold; font-family: monospace; font-style: italic;">
+                Check yourself out!!!</h1>
+            <p class="lead mb-0" style="color: darkslategrey;">We are glad to have a beautiful customer like you with
+                us!!</p>
+        </div>
+    </div>
+
+
+    <div class="row py-5 px-4">
+        <div class="col-xl-4 col-md-6 col-sm-10 mx-auto">
+
+            <div class="bg-white shadow rounded overflow-hidden">
+                <div class="px-4 pt-3 pb-4 bg-dark">
+                    <div class="media align-items-end profile-header">
+                        <div class="profile mr-2"><img src={{userDetails?.photoUrl}} alt="..." width="130"
+                                class="rounded mb-2 img-thumbnail"></div>
+                        <div class="media-body mb-5 text-white">
+                            <h4 class="mt-0 mb-0">{{userDetails?.name}}</h4>
+                            <p class="small mb-4"> <i class="fa fa-map-marker mr-2"></i>{{userDetails?.address}}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-light p-4 justify-content-end">
+                    <ul class="list-inline ml-auto">
+                        <li class="list-inline-item text-center">
+                            <h5 class="font-weight-bold mb-0 d-block text-center">{{pastOrderListCount}}</h5><small
+                                class="text-muted"> <i class="fa fa-picture-o mr-1"></i>Number of Orders you have placed
+                                so far</small>
+                        </li>
+
+                    </ul>
+                </div>
+
+                <div class="py-4 px-4" *ngIf="userDetails!=null">
+                    <div *ngIf="roleName==Customer" class="d-flex align-items-center justify-content-between mb-3">
+                        <h5 class="mb-0">Profile Details</h5>
+                    </div>
+                    <div class="row pl-3">
+                        <div class="tab-pane active" id="profile">
+                            <div class="row">
+                                <div class="col-md-7">
+                                    <h6 style="font-weight: bold;">User Name</h6>
+                                    <p class="mb-4" style="font-family: cursive;">
+                                        {{userDetails.name}}
+                                    </p>
+                                    <h6 style="font-weight: bold;">Contact</h6>
+                                    <p *ngIf="userDetails.userMobile!=null" class="mb-4" style="font-family: cursive;">
+                                        {{userDetails.userMobile}}
+                                    </p>
+                                    <p *ngIf="userDetails.userMobile==null" class="mb-4" style="font-family: cursive;">
+                                        Your mobile number is not updated with us
+                                    </p>
+
+                                </div>
+                                <div class="col-md-5">
+                                    <h6 style="font-weight: bold;">Email</h6>
+                                    <p class="mb-4" style="font-family: cursive;">
+                                        {{userDetails.email}}
+                                    </p>
+                                    <div *ngIf="roleName!=Customer">
+                                        <h6 style="font-weight: bold;">Wallet Balance</h6>
+                                        <p class="mb-4" style="font-family: cursive;">
+                                            {{walletAmount}}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>

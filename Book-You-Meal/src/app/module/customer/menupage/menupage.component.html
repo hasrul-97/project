@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Menu</title>
+    <link href="../../../../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+    <link href="../../../../assets/css/sb-admin-2.min.css" rel="stylesheet">
+    <script>
+        $('#reload').load(document.URL + ' #mydiv');
+    </script>
+</head>
+
+<body class="parallax" style="height:100vh">
+    <div id="wrapper" style="height: 100%;">
+        <div class="float-left col-sm-2 tm-bg-white-transparent">
+            <div class="filter-content">
+                <div class="card-body">
+                    <h5 class="title">
+                        <strong>Filters</strong>
+                    </h5>
+                    <form>
+                        <h6 class="title" style="padding-top: 5px;">
+                            <strong>Meal Type</strong>
+                        </h6>
+                        <label class="form-check" *ngFor="let type of itemtypedata">
+                            <input class="form-check-input" type="checkbox" (change)="Selectedtype(type.itemTypeName)">
+                            <span class="form-check-label">
+                                {{type.itemTypeName}}
+                            </span>
+                        </label>
+
+
+                        <h6 class="title">
+                            <strong>Category</strong>
+                        </h6>
+                        <label class="form-check" *ngFor="let category of itemcategorydata">
+                            <input class="form-check-input" type="checkbox"
+                                (change)="SelectedCategory(category.itemCategoryName)">
+                            <span class="form-check-label">
+                                {{category.itemCategoryName}}
+                            </span>
+                        </label>
+
+                        <button type="button" (click)="FilterItems()" class="btn btn-success mr-auto">
+                            Apply Filter
+                            <span class="glyphicon glyphicon-play"></span>
+                        </button>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+        <div id="content-wrapper" class="d-flex flex-column col-sm-7 parallax" style>
+            <div class="d-sm-flex align-items-center justify-content-between mb-4" *ngIf="restaurantDetails!=null">
+                <h1 class="h2 pt-5 mb-0">
+                    <span style="color: rgb(255, 255, 255);">
+                        <strong>{{restaurantDetails.restaurantName}}</strong>
+                    </span>
+                </h1>
+            </div>
+            <div id="content" *ngIf="restaurantDetails!=null">
+                <h6 style="color: white;">We offer you {{restaurantDetails.discounts}}% discount on the entire cart
+                    value</h6>
+                <div *ngIf="!bookmarked()">
+                    <button type="button" class="btn btn-warning" (click)="bookmarkRestaurant()"
+                        style="margin-bottom: 30px;"><i class="fa fa-heart" style="color: white;"></i> Bookmark</button>
+                </div>
+                <div *ngIf="bookmarked()">
+                    <button type="button" class="btn btn-warning" (click)="RemoveBookmark()"
+                        style="margin-bottom: 30px;"><i class="fa fa-heart" style="color: red;"></i> Bookmarked</button>
+                </div>
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+                    <div class="input-group md-form form-sm form-1 pl-0" style="width:30%;">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text purple lighten-3" id="basic-text1"><i
+                                    class="fas fa-search text-white" aria-hidden="true"></i></span>
+                        </div>
+                        <input class="form-control my-0 py-1" id="listSearch" type="text" placeholder="Search dishes"
+                            [(ngModel)]="searchText" aria-label="Search">
+                    </div>
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h1 class="h3 pt-5 mb-0">
+                            <span style="color: white;">
+                                <strong>Main Course
+                                </strong>
+                            </span>
+                        </h1>
+                    </div>
+                    <div class="row">
+                        <div *ngIf="(itemList|itemFilter:searchText) as items">
+                            <div class="row" *ngIf="items==null">
+                                <h1 class="h2 pt-5 mb-0">
+                                    <span style="color: rgb(39, 7, 7);">
+                                        <strong>Sorry ,No Items Found</strong>
+                                    </span>
+                                </h1>
+                            </div>
+                        </div>
+
+                        <div *ngIf="(itemList|itemFilter:searchText) as items">
+                            <div class="row">
+
+                                <div class="col-md-3" *ngFor="let i of items">
+                                    <figure class="card card-product">
+                                        <figcaption class="info-wrap">
+                                            <img *ngIf="i.itemImage!=null"
+                                                src="https://kalingaprojectsdotnet.blob.core.windows.net/book-your-meal/{{i.itemImage}}">
+                                            <img *ngIf="i.itemImage==null"
+                                                src="https://kalingaprojectsdotnet.blob.core.windows.net/book-your-meal-static/dinner-1.jpg">
+                                            <h6 class="title text-dots pt-2">{{i.itemName}}</h6>
+                                            <div class="action-wrap">
+                                                <button click="" class="btn btn-primary btn-sm float-right"
+                                                    (click)="AddProductToCart(i.itemId,i.itemName,i.itemPrice)"> Add to
+                                                    Cart
+                                                </button>
+                                                <div class="price-wrap h5">
+                                                    <span class="price-new">{{i.itemPrice}}</span>
+                                                </div>
+                                            </div>
+                                        </figcaption>
+                                    </figure>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <nav class="fixed-right col-sm-3 tm-bg-cart-transparent">
+            <div class="fixed-menu container-fluid" style="padding-top: 20px;">
+                <div class="nav-wraper scroll" style="max-height: 90vh;overflow-y: auto;">
+                    <div class="navbar">
+                        <div class="navbar navbar-default visible-xs" style="position: unset;">
+                            <div class="container-fluid align-items-center">
+
+                                <h3>Your Cart
+                                    <i class="fa fa-shopping-cart fa-1x"></i>
+                                </h3>
+
+                            </div>
+                        </div>
+
+                        <div class="row">
+
+                            <div id="filter-sidebar" class="visible-sm visible-md visible-lg sliding-sidebar">
+
+                                <table class="table " style="table-layout: fixed;width: 100%;">
+                                    <thead>
+                                        <tr>
+                                            <th>Product</th>
+                                            <th>Qty</th>
+                                            <th class="text-center">Price</th>
+                                            <th class="text-center">Total</th>
+                                            <th class="text-center">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody *ngIf="productDetails!=null">
+                                        <tr *ngFor="let item of productDetails">
+                                            <td class="col-md-6">
+                                                <div class="media">
+                                                    <div class="media-body">
+                                                        <h5 class="media-heading">{{item.ProductName}}</h5>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="col-md-1 text-center">
+                                                <strong>{{item.Quantity}}</strong>
+                                            </td>
+                                            <td class="col-md-1 text-center">
+                                                <strong>{{item.Price}}</strong>
+                                            </td>
+                                            <td class="col-md-1 text-center">
+                                                <strong>{{item.Price*item.Quantity}}</strong>
+                                            </td>
+                                            <td><button (click)="delete(item.ProductName)" class="text-dark">
+                                                    <i class="fa fa-trash"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>   </td>
+                                            <td>
+                                                <h4>Total</h4>
+                                            </td>
+                                            <td class="text-to left" *ngIf="cartTotal!=NaN">
+                                                <h5>
+                                                    Rs.<strong>{{cartTotal}}</strong>
+                                                </h5>
+                                            </td>
+                                            <td></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                                <div style="text-align: center;" *ngIf="productDetails==null">
+                                    <p>There are no product in your cart.</p>
+                                </div>
+                            </div>
+                            <button (click)="ForwardCart()" class="btn btn-success not-allowed mr-auto ml-auto"
+                                [disabled]="checkFlag()">Checkout</button>
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </div>
+
+        </nav>
+
+    </div>
+</body>
+
+</html>
+<script src="../../../../assets/vendor/jquery/jquery.min.js"></script>
+<script src="../../../../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="../../../../assets/vendor/jquery-easing/jquery.easing.min.js"></script>
+<script src="../../../../assets/js/sb-admin-2.min.js"></script>
+<script src="../../../../assets/vendor/chart.js/Chart.min.js"></script>
+<script src="../../../../assets/js/demo/chart-area-demo.js"></script>
+<script src="../../../../assets/js/s/demo/chart-pie-demo.js"></script>

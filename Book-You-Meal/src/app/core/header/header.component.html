@@ -1,0 +1,71 @@
+<div class="navbar-expand-md">
+    <nav class="navbar navbar-dark  fixed-top navbar-expand-md bg-dark navbar-no-bg">
+        <a href="" *ngIf="service.IsLogedIn()" class="navbar-brand mt-2">BookYourMeal</a>
+        <a href="#/{{roleNameURL}}/home" *ngIf="!service.IsLogedIn()" class="navbar-brand mt-2">BookYourMeal-<span
+                style="color: rgb(35, 204, 255);">{{roleName}}</span></a>
+        <form class="form-inline md-form form-sm active-cyan-2 mt-2">
+            <input *ngIf="locationValue!=undefined"
+                class="form-control form-control-sm mr-3 w-90 col-xs-4 search-query bg-dark transparent-input"
+                [value]=locationValue list=address type="text" aria-label="Search">
+            <datalist id=address>
+                <option>{{locationValue}}</option>
+            </datalist>
+            <input *ngIf="locationValue==undefined"
+                class="form-control form-control-sm mr-3 w-90 col-xs-4 search-query bg-dark transparent-input"
+                value="Loading.." type="text" aria-label="Search">
+            <span class="glyphicon glyphicon-map-marker"></span>
+        </form>
+        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="ml-auto justify-content-between">
+                <div class="navbar-nav">
+                    
+                    <div *ngIf="service.GetUserName()!=null">
+                        <a class="nav-link" routerLink="profile/home" aria-disabled="true">Hi,
+                            {{service.GetUserName()}}</a>
+                    </div>
+                    <div *ngIf="!service.IsLogedIn()">
+                        <a class="nav-link" data-toggle="modal" data-target="" (click)="logOut()">Logout</a>
+                    </div>
+                    <div *ngIf="service.IsLogedIn()">
+                        <a data-toggle="modal" href="" class="nav-link" data-target="#Login">SignUp/Login</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+</div>
+<div class="modal fade" id="Login" tabindex="-1" role="dialog" aria-labelledby="#Login" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <h4 class="modal-title w-100 font-weight-bold">Login</h4>
+                <button type="button" class="close" data-dismiss=modal aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <app-login></app-login>
+            <div class="modal-footer d-flex justify-content-center">
+                <h6>Please choose one of the following social authentication gateway.</h6>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="SignUp" tabindex="-1" role="dialog" aria-labelledby="#SignUp" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <h4 class="modal-title w-100 font-weight-bold">SignUp</h4>
+                <button type="button" class="close" data-dismiss=modal aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <app-login></app-login>
+            <div class="modal-footer d-flex justify-content-center">
+                <h6>Please choose one of the following social authentication gateway.</h6>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,57 @@
+
+        .big-search-box {
+            position: relative;
+            width: 20%;
+            left: 250%;
+            }
+          
+            .login-box {
+              position: relative;
+              left: 55%;
+              }
+          
+            .big-filter-box {
+                position: relative;
+                width: 20%;
+                left: 5px;
+            }
+
+            input::-webkit-calendar-picker-indicator {
+                display: none;
+              }
+
+              .blur{
+                  opacity: 0.7;
+              }
+
+              .form-control:focus {
+                box-shadow: none;
+              }
+              
+              .form-control-underlined {
+                border-width: 0;
+                border-bottom-width: 1px;
+                border-radius: 0;
+                padding-left: 0;
+              }
+
+              .transparent-input {
+                background-color: rgba(0, 0, 0, 0);
+                border:none;
+             }
+
+             .glyphicon.glyphicon-map-marker{
+                color: #fff;
+             }
+
+             .transparent-input:focus {
+               color: #fff;
+             }
+
+             .search-query {
+              color:white;
+          }
+
+
+
+            
